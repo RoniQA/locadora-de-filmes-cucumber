@@ -8,7 +8,10 @@ import cucumber.api.java.pt.Quando;
 import entidades.NotaAluguel;
 import org.junit.Assert;
 import servicos.AluguelService;
+import utils.DateUtils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -18,6 +21,7 @@ public class AlugarFilmesSteps {
     private AluguelService aluguel = new AluguelService();
     private NotaAluguel nota;
     private String erro;
+    private String tipoAluguel;
     @Dado("^um filme com estoque de (\\d+) unidades$")
     public void um_filme_com_estoque_de_unidades(int arg1) throws Throwable {
         filme = new Filme();
@@ -32,7 +36,7 @@ public class AlugarFilmesSteps {
     @Quando("^alugar$")
     public void alugar() throws Throwable {
         try {
-            nota = aluguel.alugar(filme);
+            nota = aluguel.alugar(filme, tipoAluguel);
         } catch (RuntimeException e){
             erro = e.getMessage();
         }
@@ -66,5 +70,26 @@ public class AlugarFilmesSteps {
     @Entao("^não será possível por falta de estoque$")
     public void não_será_possível_por_falta_de_estoque() throws Throwable {
         Assert.assertEquals("Filme sem estoque", erro);
+    }
+
+    @Dado("^que o tipo do aluguel seja extendido$")
+    public void que_o_tipo_do_aluguel_seja_extendido() throws Throwable {
+        tipoAluguel = "extendido";
+    }
+
+    @Entao("^a data de entrega será em (\\d+) dias$")
+    public void a_data_de_entrega_será_em_dias(int arg1) throws Throwable {
+        Date dataEsperada = DateUtils.obterDataDiferencaDias(3);
+        Date dataReal = nota.getDataEntrega();
+
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+        Assert.assertEquals(format.format(dataEsperada), format.format(dataReal));
+    }
+
+    @Entao("^a pontuação recebida será (\\d+) pontos$")
+    public void a_pontuação_recebida_será_pontos(int arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
     }
 }
