@@ -13,6 +13,7 @@ public class AluguelService {
         if ("extendido".equals(tipoAluguel)) {
             nota.setPreco(filme.getAluguel() * 2);
             nota.setDataEntrega(DateUtils.obterDataDiferencaDias(3));
+            nota.setPontuacao(2);
         }else {
             nota.setPreco(filme.getAluguel());
             nota.setDataEntrega(DateUtils.obterDataDiferencaDias(1));

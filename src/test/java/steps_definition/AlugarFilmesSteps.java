@@ -89,7 +89,6 @@ public class AlugarFilmesSteps {
 
     @Entao("^a pontuação recebida será (\\d+) pontos$")
     public void a_pontuação_recebida_será_pontos(int arg1) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        Assert.assertEquals(arg1, nota.getPontuacao());
     }
 }
