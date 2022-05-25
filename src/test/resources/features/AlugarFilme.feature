@@ -9,7 +9,7 @@ Funcionalidade: Alugar Filme
     E que o preço do aluguel seja R$ 3
     Quando alugar
     Entao o preço do aluguel será R$ 3
-    E a data de entrega será no dia seguinte
+    E a data de entrega será em 1 dia
     E o estoque do filme será 1 unidade
 
   Cenario: Não deve alugar filme sem estoque
@@ -26,3 +26,12 @@ Funcionalidade: Alugar Filme
     Entao o preço do aluguel será R$ 8
     E a data de entrega será em 3 dias
     E a pontuação recebida será 2 pontos
+
+  Cenario: Deve alugar para categoria comum
+    Dado um filme com estoque de 2 unidades
+    E que o preço do aluguel seja R$ 4
+    E que o tipo do aluguel seja comum
+    Quando alugar
+    Entao o preço do aluguel será R$ 4
+    E a data de entrega será em 1 dia
+    E a pontuação recebida será 1 ponto

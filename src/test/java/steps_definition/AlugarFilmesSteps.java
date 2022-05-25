@@ -48,20 +48,6 @@ public class AlugarFilmesSteps {
         Assert.assertEquals(arg1, nota.getPreco());
     }
 
-    @Entao("^a data de entrega será no dia seguinte$")
-    public void a_data_de_entrega_será_no_dia_seguinte() throws Throwable {
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DAY_OF_MONTH, 1);
-
-        Date dataRetorno = nota.getDataEntrega();
-        Calendar calRetorno = Calendar.getInstance();
-        calRetorno.setTime(dataRetorno);
-
-        Assert.assertEquals(cal.get(Calendar.DAY_OF_MONTH), calRetorno.get(Calendar.DAY_OF_MONTH));
-        Assert.assertEquals(cal.get(Calendar.MONTH), calRetorno.get(Calendar.MONTH));
-        Assert.assertEquals(cal.get(Calendar.YEAR), calRetorno.get(Calendar.YEAR));
-    }
-
     @Entao("^o estoque do filme será (\\d+) unidade$")
     public void o_estoque_do_filme_será_unidade(int arg1) throws Throwable {
         Assert.assertEquals(arg1, filme.getEstoque());
@@ -72,14 +58,14 @@ public class AlugarFilmesSteps {
         Assert.assertEquals("Filme sem estoque", erro);
     }
 
-    @Dado("^que o tipo do aluguel seja extendido$")
-    public void que_o_tipo_do_aluguel_seja_extendido() throws Throwable {
-        tipoAluguel = "extendido";
+    @Dado("^que o tipo do aluguel seja (.*)$")
+    public void que_o_tipo_do_aluguel_seja_extendido(String tipo) throws Throwable {
+        tipoAluguel = tipo;
     }
 
-    @Entao("^a data de entrega será em (\\d+) dias$")
+    @Entao("^a data de entrega será em (\\d+) dias?$")
     public void a_data_de_entrega_será_em_dias(int arg1) throws Throwable {
-        Date dataEsperada = DateUtils.obterDataDiferencaDias(3);
+        Date dataEsperada = DateUtils.obterDataDiferencaDias(arg1);
         Date dataReal = nota.getDataEntrega();
 
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -87,7 +73,7 @@ public class AlugarFilmesSteps {
         Assert.assertEquals(format.format(dataEsperada), format.format(dataReal));
     }
 
-    @Entao("^a pontuação recebida será (\\d+) pontos$")
+    @Entao("^a pontuação recebida será (\\d+) pontos?$")
     public void a_pontuação_recebida_será_pontos(int arg1) throws Throwable {
         Assert.assertEquals(arg1, nota.getPontuacao());
     }
