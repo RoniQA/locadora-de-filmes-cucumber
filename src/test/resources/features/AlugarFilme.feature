@@ -6,8 +6,9 @@ Funcionalidade: Alugar Filme
 
   Cenario: Deve alugar um filme com sucesso
     Dado um filme
-      | estoque | 2 |
-      | preco   | 3 |
+      | estoque | 2     |
+      | preco   | 3     |
+      | tipo    | comum |
     Quando alugar
     Entao o preço do aluguel será R$ 3
     E a data de entrega será em 1 dia

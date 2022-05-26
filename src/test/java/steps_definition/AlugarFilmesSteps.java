@@ -24,7 +24,7 @@ public class AlugarFilmesSteps {
     private AluguelService aluguel = new AluguelService();
     private NotaAluguel nota;
     private String erro;
-    private TipoAluguel tipoAluguel = TipoAluguel.COMUM;
+    private TipoAluguel tipoAluguel;
     @Dado("^um filme com estoque de (\\d+) unidades$")
     public void um_filme_com_estoque_de_unidades(int arg1) throws Throwable {
         filme = new Filme();
@@ -42,6 +42,9 @@ public class AlugarFilmesSteps {
         filme = new Filme();
         filme.setEstoque(Integer.parseInt(map.get("estoque")));
         filme.setAluguel(Integer.parseInt(map.get("preco")));
+        String tipo = map.get("tipo");
+        tipoAluguel = tipo.equals("semanal")? TipoAluguel.SEMANAL: tipo.equals("extendido")? TipoAluguel.EXTENDIDO: TipoAluguel.COMUM;
+
     }
 
     @Quando("^alugar$")
