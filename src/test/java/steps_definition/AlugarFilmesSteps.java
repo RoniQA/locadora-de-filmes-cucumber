@@ -1,5 +1,6 @@
 package steps_definition;
 
+import cucumber.api.DataTable;
 import entidades.Filme;
 import cucumber.api.PendingException;
 import cucumber.api.java.pt.Dado;
@@ -15,6 +16,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 
 public class AlugarFilmesSteps {
 
@@ -32,6 +34,14 @@ public class AlugarFilmesSteps {
     @Dado("^que o preço do aluguel seja R\\$ (\\d+)$")
     public void que_o_preço_do_aluguel_seja_R$(int arg1) throws Throwable {
         filme.setAluguel(arg1);
+    }
+
+    @Dado("^um filme$")
+    public void um_filme(DataTable table) throws Throwable {
+        Map<String, String> map = table.asMap(String.class, String.class);
+        filme = new Filme();
+        filme.setEstoque(Integer.parseInt(map.get("estoque")));
+        filme.setAluguel(Integer.parseInt(map.get("preco")));
     }
 
     @Quando("^alugar$")
