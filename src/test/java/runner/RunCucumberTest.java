@@ -15,9 +15,8 @@ import org.junit.runner.RunWith;
         dryRun = false,								// Validar Steps sem executar o teste
         plugin = {									// Plugins Cucumber para possivel integracao com Jenkins
                 "pretty",
-                //"html:target/cucumber-reports",
-                "junit:target/cucumber-reports/cucumber.xml",
-                "json:target/cucumber-reports/cucumber.json"
+                "html:target/cucumber-reports",
+                "json:target/report.json"
         }
         //,tags = { "@tagScenario" }
 
