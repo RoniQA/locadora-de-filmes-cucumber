@@ -7,8 +7,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/features",	// Path: features = "classpath:features"
+        features = "src/test/resources/features/inserir_conta.feature",	// Path: features = "classpath:features"
         glue = "steps_definition",					// Path: Steps
+        tags = {"~@ignore"},
         monochrome = true,							// Cores no Terminal default: false
         snippets = SnippetType.UNDERSCORE,			// METHODOS do Steps em CAMELCASE
         strict = true,								// Considerar steps indefinidos erros ou nao, default: false
