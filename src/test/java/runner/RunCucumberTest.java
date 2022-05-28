@@ -12,12 +12,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/features/inserir_conta.feature",	// Path: features = "classpath:features"
+        features = "src/test/resources/features/",	// Path: features = "classpath:features"
         glue = "steps_definition",					// Path: Steps
-        tags = {"~@ignore"},
+        tags = {"@unitários"},
         monochrome = true,							// Cores no Terminal default: false
         snippets = SnippetType.UNDERSCORE,			// METHODOS do Steps em CAMELCASE
-        strict = true,								// Considerar steps indefinidos erros ou nao, default: false
+        strict = false,								// Considerar steps indefinidos erros ou nao, default: false
         dryRun = false,								// Validar Steps sem executar o teste
         plugin = {									// Plugins Cucumber para possivel integracao com Jenkins
                 "pretty",
@@ -45,16 +45,5 @@ import org.openqa.selenium.chrome.ChromeDriver;
          * */
 )
 
-public class RunCucumberTest
-{
-        @BeforeClass
-        public static void reset() {
-                WebDriver driver = new ChromeDriver();
-                driver.get("https://seubarriga.wcaquino.me/");
-                driver.findElement(By.id("email")).sendKeys("ronierisoncosta@gmail.com");
-                driver.findElement(By.name("senha")).sendKeys("zeca21121991");
-                driver.findElement(By.tagName("button")).click();
-                driver.findElement(By.linkText("reset")).click();
-                driver.quit();
-        }
+public class RunCucumberTest {
 }

@@ -1,4 +1,5 @@
 #language: pt
+  @funcionais
 Funcionalidade: Cadastro de contas
 
   Como um usuário
@@ -14,16 +15,13 @@ Funcionalidade: Cadastro de contas
     Quando seleciono Contas
     E seleciono Adicionar
 
-  Cenário: Deve inserir uma conta com sucesso
-    E informo a conta "Conta de Teste"
+  Esquema do Cenario: Deve validar regras do cadastro de contas
+    Quando informo a conta "<conta>"
     E seleciono Salvar
-    Então a conta é inserida com sucesso
+    Então recebo a mensagem "<mensagem>"
 
-  Cenário: Não deve inserir uma conta sem nome
-    E seleciono Salvar
-    Então sou notificado que o nome da conta é obrigatório
-
-  Cenário: Não deve inserir uma conta com nome já existente
-    E informo a conta "Conta mesmo nome"
-    E seleciono Salvar
-    Então sou notificado que já existe uma conta com esse nome
+  Exemplos:
+    | conta            | mensagem                           |
+    | Conta de teste   | Conta adicionada com sucesso!      |
+    |                  | Informe o nome da conta            |
+    | Conta mesmo nome | Já existe uma conta com esse nome! |
